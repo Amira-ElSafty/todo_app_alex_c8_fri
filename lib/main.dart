@@ -1,9 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app_c8_fri/home/home_screen.dart';
+import 'package:flutter_todo_app_c8_fri/list_provider/list_provider.dart';
 import 'package:flutter_todo_app_c8_fri/my_theme.dart';
+import 'package:provider/provider.dart';
 
-void main(){
-  runApp(MyApp());
+void main()async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(ChangeNotifierProvider(
+    create: (context) => ListProvider(),
+      child: MyApp()));
 }
 class MyApp extends StatelessWidget {
   @override
